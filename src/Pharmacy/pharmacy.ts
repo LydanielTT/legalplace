@@ -1,9 +1,15 @@
+import Drug from "../Drug/drug";
+
 class Pharmacy {
-  drugs: any[];
-  constructor(drugs: any = []) {
+  drugs: Drug[];
+  constructor(drugs: Drug[] = []) {
     this.drugs = drugs;
   }
-  updateBenefitValue() {
+  private isBenefit50 = (drugArg) => {
+    return drugArg.benefit < 50;
+  };
+
+  updateBenefitValue = () => {
     for (var i = 0; i < this.drugs.length; i++) {
       if (
         this.drugs[i].name != "Herbal Tea" &&
@@ -15,16 +21,16 @@ class Pharmacy {
           }
         }
       } else {
-        if (this.drugs[i].benefit < 50) {
+        if (this.isBenefit50(this.drugs[i])) {
           this.drugs[i].benefit = this.drugs[i].benefit + 1;
           if (this.drugs[i].name == "Fervex") {
             if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
+              if (this.isBenefit50(this.drugs[i])) {
                 this.drugs[i].benefit = this.drugs[i].benefit + 1;
               }
             }
             if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
+              if (this.isBenefit50(this.drugs[i])) {
                 this.drugs[i].benefit = this.drugs[i].benefit + 1;
               }
             }
@@ -55,7 +61,7 @@ class Pharmacy {
     }
 
     return this.drugs;
-  }
+  };
 }
 
 export default Pharmacy;

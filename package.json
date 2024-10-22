@@ -9,7 +9,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "start": "npm run build && babel-node index.js",
-    "build": "babel src -o pharmacy-built.js --extensions \".ts,.js\" --ignore \"*.test.ts\""
+    "build": "babel src -o pharmacy-built.js --extensions \".ts,.js\" --ignore \"src/**/*.test.ts\""
   },
   "devDependencies": {
     "@babel/cli": "^7.24.1",

@@ -1,6 +1,7 @@
-import Drug from "../Drug/drug";
+import { Drug } from "../Drug/drug";
 
-class Pharmacy {
+
+export class Pharmacy {
   drugs: Drug[];
   constructor(drugs: Drug[] = []) {
     this.drugs = drugs;

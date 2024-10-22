@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "start": "babel-node index.js"
+    "test:watch": "jest --watch",
+    "start": "npm run build && babel-node index.js",
+    "build": "babel src -o pharmacy-built.js --extensions \".ts,.js\" --ignore \"*.test.ts\""
   },
   "devDependencies": {
     "@babel/cli": "^7.24.1",
@@ -15,6 +18,7 @@
     "@babel/node": "^7.23.9",
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-typescript": "^7.25.7",
+    "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.13",
     "babel-jest": "^29.7.0",
     "eslint": "^8.57.0",
@@ -24,16 +28,15 @@
     "prettier": "^3.2.5",
     "regenerator-runtime": "^0.14.1",
     "ts-jest": "^29.2.5",
-    "typescript": "^5.6.3"
-  },
-  "dependencies": {
+    "typescript": "^5.6.3",
     "yarn": "^1.22.22"
   },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
     "transform": {
-      "node_modules/variables/.+\\.(j|t)sx?$": "ts-jest"
+      "node_modules/variables/.+\\.ts?$": "ts-jest",
+      "^.+\\.js?$": "babel-jest"
     },
     "transformIgnorePatterns": [
       "node_modules/(?!variables/.*)"

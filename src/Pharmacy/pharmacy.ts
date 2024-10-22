@@ -8,11 +8,11 @@ export class Pharmacy {
   }
 
   updateBenefitValue = () => {
-    for (var i = 0; i < this.drugs.length; i++) {
-      this.drugs[i].updateBenefitValue();
+    for (let drug of this.drugs) {
+        drug.updateBenefitValue();
     }
 
-    return this.drugs;
+    return this.drugs; // TODO work on deep copy for mutability issues
   };
 }
 

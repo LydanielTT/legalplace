@@ -22,6 +22,9 @@ export class Drug {
     if (this.expiresIn < 0) {
       ratio *= 2;
     }
+    if (this.name == "Dafalgan") {
+      ratio *= 2;
+    }
     if (this.name == "Fervex") {
       if (this.expiresIn < 11) {
         ratio = 2;
@@ -50,9 +53,10 @@ export class Drug {
   };
   updateBenefitValue = () => {
     if (this.name == "Magic Pill") {
-      return;
+      return this;
     }
     this.ratioChangeBenefit();
     this.expiresIn = this.expiresIn - 1;
+    return this;
   };
 }

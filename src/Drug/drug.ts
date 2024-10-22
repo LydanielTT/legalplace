@@ -16,7 +16,7 @@ export class Drug {
 
   private ratioChangeBenefit = () => {
     let ratio = 1;
-    if (this.name != "Herbal Tea" && this.name != "Fervex") {
+    if (this.name !== "Herbal Tea" && this.name !== "Fervex") {
       ratio = -1;
     }
     if (this.expiresIn < 0) {
@@ -40,10 +40,11 @@ export class Drug {
       if (this.expiresIn < 0) {
         ratio = 2;
       }
-      this.benefit += ratio;
-      this.benefit = !this.isBenefitUnder50 ? 50 : this.benefit;
-      this.benefit = !this.isBenefitOver0 ? 0 : this.benefit;
     }
+    this.benefit += ratio;
+    this.benefit = !this.isBenefitUnder50 ? 50 : this.benefit;
+    this.benefit = !this.isBenefitOver0 ? 0 : this.benefit;
+
     // -2x if expiresIn <0
     // benefit <0 = 0
     // herbal tea and expiresIn < 0 = +2x
@@ -57,6 +58,5 @@ export class Drug {
     }
     this.ratioChangeBenefit();
     this.expiresIn = this.expiresIn - 1;
-    return this;
   };
 }
